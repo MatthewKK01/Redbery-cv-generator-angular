@@ -1,0 +1,14 @@
+:host{
+    background-image: url('/assets/images/background.png');
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+.container-custom{
+    width: 1780px;
+    margin-inline: auto;
+}
+.hei{
+    min-height: calc(100vh - 90px);
+}
