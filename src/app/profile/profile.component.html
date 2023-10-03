@@ -1,1 +1,9 @@
-<p>profile works!</p>
+<div>
+  <label for="email">Email:</label>
+  <input
+    type="text"
+    id="email"
+    [(ngModel)]="user.email"
+    (ngModelChange)="onEmailChange($event)"
+  />
+</div>
