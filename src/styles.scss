@@ -9,3 +9,49 @@ $dark: #1A1A1A;
 .router-outlet{
     background-color: red;
 }
+.px-6{
+    padding-inline: 24px;
+}
+.btn-success{
+    background-color: #6B40E3;
+    width: 151px;
+    height: 48px;
+    padding: 0;
+    color: white;
+    border: #6B40E3;
+    &:hover{
+        background-color: #6B40E3;
+    }
+    &:active{
+        background-color: #6B40E3;
+    }
+    &:visited{
+        background-color: #6B40E3;
+    }
+}
+.btn-info{
+    background-color: #0E80BF;
+    color: white !important; 
+    font-size: 14px !important; 
+    font-weight: 400 !important; 
+    border: #0E80BF;
+    &:hover{
+        background-color: #0E80BF;
+    }
+    &:active{
+        background-color: #0E80BF;
+    }
+    &:visited{
+        background-color: #0E80BF;
+    }
+}
+.btn{
+    border-radius: 4px !important;
+}
+input, textarea{
+    border:1px solid #BCBCBC;
+    outline: none;
+}
+input{
+    height: 48px;
+}

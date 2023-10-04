@@ -1,4 +1,55 @@
-<div>
-  <label for="email">Email:</label>
-  <input type="text" id="email" [(ngModel)]="user.email" />
-</div>
+<form>
+  <div class="d-flex" style="gap: 56px">
+    <div class="d-flex flex-column">
+      <label for="name">Name</label>
+      <input
+        style="width: 371px"
+        type="text"
+        id="name"
+        [(ngModel)]="user.name"
+      />
+      <small>Min. 2 digits, English symbols</small>
+    </div>
+    <div class="d-flex flex-column">
+      <label for="surname">Surname</label>
+      <input
+        style="width: 370px"
+        type="text"
+        id="surname"
+        [(ngModel)]="user.surname"
+      />
+      <small>Min. 2 digits, English symbols</small>
+    </div>
+  </div>
+  <div class="d-flex align-items-center" style="gap: 19px">
+    <label>Your Image</label>
+    <label
+      for="image"
+      style="width: 107px; height: 27px; padding: 2px"
+      class="btn btn-info"
+      >Upload</label
+    >
+    <input class="d-none" type="file" id="image" [(ngModel)]="user.image" />
+  </div>
+  <div class="d-flex flex-column">
+    <label for="about_me"></label>
+    <textarea
+      name="about_me"
+      id="about_me"
+      cols="30"
+      (resize)="(false)"
+      rows="4"
+    ></textarea>
+  </div>
+  <div class="d-flex flex-column">
+    <label for="email">Email</label>
+    <input type="text" id="email" [(ngModel)]="user.email" />
+    <small>Must end with @redberry.ge</small>
+  </div>
+  <div class="d-flex flex-column">
+    <label for="phone_number">phone_number</label>
+    <input type="text" id="phone_number" [(ngModel)]="user.phone_number" />
+    <small>Must meet the Georgian mobile number format</small>
+  </div>
+  <button class="btn btn-success">Experience</button>
+</form>
