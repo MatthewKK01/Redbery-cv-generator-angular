@@ -5,3 +5,7 @@
 }
 $dark: #1A1A1A;
 @import '/node_modules/bootstrap/scss/bootstrap.scss';
+
+.router-outlet{
+    background-color: red;
+}

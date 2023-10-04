@@ -14,10 +14,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private dataShareService: DatashareService) { }
 
-  onEmailChange(newEmail: string): void {
-    // Update the email property of the user object.
-    this.user.email = newEmail;
-  }
+
 
   ngOnInit() {
     // Subscribe to the user$ observable to get the initial user data.

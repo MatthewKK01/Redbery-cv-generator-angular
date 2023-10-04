@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Route, Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,11 @@ import { Route, Router } from '@angular/router';
 export class HomeComponent {
   constructor(private router: Router) { }
 
+  @Input() public isHomePage!: boolean;
+  @Output() updateIsHomePage = new EventEmitter<boolean>();
+
   naviagteToHomePage() {
     this.router.navigate(['/profile']);
+    this.updateIsHomePage.emit(false);
   }
 }
