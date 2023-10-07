@@ -1,10 +1,1 @@
-<div *ngIf="isHomePage">
-  <app-home
-    [isHomePage]="isHomePage"
-    (updateIsHomePage)="updateIsHomePage($event)"
-  ></app-home>
-</div>
-<div class="d-flex container-fluid">
-  <div class="col-7"><router-outlet></router-outlet></div>
-  <app-info></app-info>
-</div>
+<router-outlet></router-outlet>

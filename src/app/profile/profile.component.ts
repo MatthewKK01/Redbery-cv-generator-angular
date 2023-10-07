@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatashareService } from '../datashare.service';
 
 import { UserProfile } from '../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ export class ProfileComponent implements OnInit {
 
   user!: UserProfile;
 
-  constructor(private dataShareService: DatashareService) { }
+  constructor(private dataShareService: DatashareService, private router: Router) { }
 
 
 
@@ -21,5 +22,9 @@ export class ProfileComponent implements OnInit {
     this.dataShareService.user$.subscribe((res) => {
       this.user = res;
     })
+  }
+
+  navigateToExperience() {
+    this.router.navigate(['/experience'])
   }
 }
