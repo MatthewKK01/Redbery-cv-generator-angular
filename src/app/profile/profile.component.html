@@ -1,5 +1,5 @@
 <section class="d-flex h-100">
-  <form class="px-m position-relative bg-form">
+  <div class="px-m position-relative bg-form">
     <div class="border-bottom border-dark" style="margin-bottom: 70px">
       <div class="d-flex align-items-center justify-content-between">
         <img class="back-arrow" src="assets/images/arrow.svg" alt="" />
@@ -40,7 +40,13 @@
         class="btn btn-info"
         >Upload</label
       >
-      <input class="d-none" type="file" id="image" [(ngModel)]="user.image" />
+      <input
+        class="d-none"
+        type="file"
+        id="image"
+        (change)="onImageSelected($event)"
+        accept="image/*"
+      />
     </div>
     <div class="d-flex flex-column">
       <label for="about_me">About me</label>
@@ -50,6 +56,7 @@
         cols="30"
         (resize)="(false)"
         rows="4"
+        [(ngModel)]="user.about_me"
       ></textarea>
     </div>
     <div
@@ -71,7 +78,5 @@
     >
       Experience
     </button>
-  </form>
-  <app-info></app-info>
-  >>>>>>> parent of 715afc0 (created resume page)
+  </div>
 </section>
