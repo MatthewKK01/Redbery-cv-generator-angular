@@ -10,15 +10,10 @@ export class AppComponent {
   isHomePage = true;
 
   ngOnInit() {
-    // Retrieve the value from local storage if it exists
-    const storedValue = localStorage.getItem('isHomePage');
-    if (storedValue !== null) {
-      this.isHomePage = JSON.parse(storedValue);
-    }
+    console.log(this.isHomePage);
   }
   updateIsHomePage(value: boolean) {
     console.log("clicked")
-    localStorage.setItem('isHomePage', JSON.stringify(value));
     this.isHomePage = value;
   }
 }

@@ -9,11 +9,12 @@ import { Route, Router } from '@angular/router';
 export class HomeComponent {
   constructor(private router: Router) { }
 
-  @Input() public isHomePage!: boolean;
+  @Input() public isHomePage!: boolean
   @Output() updateIsHomePage = new EventEmitter<boolean>();
 
   naviagteToHomePage() {
-    this.router.navigate(['/profile']);
     this.updateIsHomePage.emit(false);
+    console.log("clicked");
+    this.router.navigate(['/profile']);
   }
 }
