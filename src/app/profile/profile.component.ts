@@ -24,18 +24,6 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  onImageSelected(event: any): void {
-    const file = event.target.files[0]; // Get the selected file
-    if (file) {
-      // Assuming you want to store the image file as a base64 string
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.user.image = reader.result as string; // Assign the base64 data to the image property
-      };
-      reader.readAsDataURL(file); // Read the file as a data URL
-    }
-  }
-
   navigateToExperience() {
     this.router.navigate(['/experience'])
   }
