@@ -75,8 +75,6 @@
     />
   </div>
 
-  <h2 *ngIf="userdata?.experiences && (userdata?.experiences?.length ?? 0 > 0)">
-    Experience
-  </h2>
+  <h2 *ngIf="userdata?.experiences && userdata?.experiences">Experience</h2>
   <img class="logo" src="/assets/images/info-logo.svg" alt="" />
 </section>
