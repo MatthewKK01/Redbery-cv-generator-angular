@@ -8,7 +8,8 @@ import { InfoComponent } from './info/info.component';
 import { ExperienceComponent } from './experience/experience.component';
 import { EducationComponent } from './education/education.component';
 import { ProfileComponent } from './profile/profile.component';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BackComponent } from './back/back.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,14 @@ import { FormsModule } from '@angular/forms';
     InfoComponent,
     ExperienceComponent,
     EducationComponent,
-    ProfileComponent
+    ProfileComponent,
+    BackComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,7 +9,25 @@ import { UserProfile } from '../models';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit {
-  userdata: UserProfile | undefined;
+  userdata: UserProfile =
+    {
+      name: '',
+      surname: '',
+      email: '',
+      phone_number: '',
+      experiences: [],
+      educations: [
+        {
+          institute: "",
+          degree_id: null,
+          due_date: "",
+          description: "",
+        }
+      ],
+      image: '',
+      about_me: '',
+    }
+    ;
 
   constructor(private data: DatashareService) { }
 

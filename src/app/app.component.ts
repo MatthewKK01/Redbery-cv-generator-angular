@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'redberry-cv-generator';
-  isHomePage = true;
+  isHomePage = true; // this must be true;
 
   ngOnInit() {
     console.log(this.isHomePage);

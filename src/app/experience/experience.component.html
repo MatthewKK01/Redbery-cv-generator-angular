@@ -13,42 +13,22 @@
       style="margin-top: 17px; margin-bottom: 13px"
     >
       <label for="position">Position</label>
-      <input
-        type="text"
-        id="position"
-        [(ngModel)]="user.experiences[0].position"
-      />
+      <input type="text" id="position" />
       <small>Min 2 symbols</small>
     </div>
     <div class="d-flex flex-column" style="margin-block: 21px">
       <label for="employer">Employer</label>
-      <input
-        type="text"
-        id="employer"
-        [(ngModel)]="user.experiences[0].employer"
-      />
-      <small>Must meet the Georgian mobile number format</small>
+      <input type="text" id="employer" />
+      <small>Min 2 symbols</small>
     </div>
     <div class="d-flex" style="gap: 56px; margin-bottom: 22px">
       <div class="d-flex flex-column">
         <label for="start_date">Start Date</label>
-        <input
-          style="width: 371px"
-          type="date"
-          id="start_date"
-          [(ngModel)]="user.experiences[0].start_date"
-        />
-        <small>Min 2 symbols</small>
+        <input style="width: 371px" type="date" id="start_date" />
       </div>
       <div class="d-flex flex-column">
         <label for="due_date">Due Date</label>
-        <input
-          style="width: 370px"
-          type="date"
-          id="due_date"
-          [(ngModel)]="user.experiences[0].due_date"
-        />
-        <small>Min. 2 digits, English symbols</small>
+        <input style="width: 370px" type="date" id="due_date" />
       </div>
     </div>
     <div class="d-flex flex-column">
@@ -59,7 +39,6 @@
         cols="30"
         (resize)="(false)"
         rows="4"
-        [(ngModel)]="user.experiences[0].description"
       ></textarea>
     </div>
     <button

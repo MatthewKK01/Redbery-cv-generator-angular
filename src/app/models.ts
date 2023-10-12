@@ -4,8 +4,8 @@ export interface UserProfile {
     surname: string;
     email: string;
     phone_number: string;
-    experiences: Experience[];
-    educations: Education[];
+    experiences?: Experience[];
+    educations?: Education[];
     image: string;
     about_me: string;
 }
@@ -20,7 +20,7 @@ export interface Experience {
 
 export interface Education {
     institute: string;
-    degree_id: number;
+    degree_id: number | null;
     due_date: string;
     description: string;
 }

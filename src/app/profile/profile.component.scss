@@ -12,3 +12,10 @@ label{
 textarea{
     resize: none;
 }
+input.ng-invalid.ng-touched{
+    border:1px solid #EF5050;
+}
+input.ng-dirty.ng-valid{
+    border:1px solid #98E37E;
+
+}

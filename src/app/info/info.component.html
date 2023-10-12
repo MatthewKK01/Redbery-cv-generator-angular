@@ -3,13 +3,13 @@
     <article class="col-lg">
       <div class="d-flex" style="gap: 20px">
         <h1 class="text-capitalize d-inline">
-          {{ userdata?.name }}
+          {{ userdata.name }}
         </h1>
-        <h1 class="text-capitalize d-inline">{{ userdata?.surname }}</h1>
+        <h1 class="text-capitalize d-inline">{{ userdata.surname }}</h1>
       </div>
 
       <p
-        *ngIf="userdata?.email"
+        *ngIf="userdata.email"
         class="d-flex align-items-center"
         style="gap: 10px; margin-bottom: 10px"
       >
@@ -20,10 +20,10 @@
           alternate_email
         </span>
 
-        {{ userdata?.email }}
+        {{ userdata.email }}
       </p>
       <p
-        *ngIf="userdata?.phone_number"
+        *ngIf="userdata.phone_number"
         class="d-flex align-items-center m-0"
         style="gap: 10px"
       >
@@ -59,22 +59,40 @@
             </g>
           </g>
         </svg>
-        {{ userdata?.phone_number }}
+        {{ userdata.phone_number }}
       </p>
       <div class="">
-        <h2 *ngIf="userdata?.about_me">About Me</h2>
-        <p>{{ userdata?.about_me }}</p>
+        <h2 *ngIf="userdata.about_me">About Me</h2>
+        <p>{{ userdata.about_me }}</p>
       </div>
     </article>
     <img
-      *ngIf="userdata?.image"
-      [src]="userdata?.image"
+      *ngIf="userdata.image"
+      [src]="userdata.image"
       alt="Avatar"
       class="avatar"
       style="width: 246px; height: 246px; border-radius: 50%; object-fit: cover"
     />
   </div>
+  <hr />
+  <div>
+    <ng-container>
+      <div *ngFor="let experience of userdata.experiences">
+        <h2>Experience</h2>
+        <div>
+          <span class="employer">{{ experience.position }}</span
+          >, <span class="employer">{{ experience.employer }}</span>
+        </div>
+        <div>
+          <span class="date"> {{ experience.start_date }} </span> -
+          <span class="date"> {{ experience.due_date }} </span>
+        </div>
+        <p class="description" style="margin-top: 16px">
+          {{ experience.description }}
+        </p>
+      </div>
+    </ng-container>
+  </div>
 
-  <h2 *ngIf="userdata?.experiences && userdata?.experiences">Experience</h2>
   <img class="logo" src="/assets/images/info-logo.svg" alt="" />
 </section>
