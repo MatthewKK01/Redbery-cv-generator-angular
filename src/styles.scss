@@ -1,6 +1,8 @@
 @import 'material-icons/iconfont/material-icons.css';
 @import '/node_modules/bootstrap/scss/bootstrap.scss';
-
+:host{
+    min-height: 100vh;
+}
 *{
     margin: 0;
     padding: 0;
@@ -56,6 +58,7 @@ position: absolute; bottom: 65px; right: 150px
 .bg-form{
     background-color: #F9F9F9;
     padding-top: 47px;
+    padding-bottom: 240px;
 }
 .text-size-20{
     font-size: 20px;
