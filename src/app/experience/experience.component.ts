@@ -1,44 +1,63 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Experience, UserProfile } from '../models';
 import { DatashareService } from '../datashare.service';
 import { Router } from '@angular/router';
+import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 @Component({
   selector: 'app-experience',
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.scss']
 })
-export class ExperienceComponent {
-  user!: UserProfile;
+export class ExperienceComponent implements OnInit {
+  user: UserProfile;
 
-  public index !: number;
+  xpForm!: FormGroup;
 
-  constructor(private dataShareService: DatashareService, private router: Router) { }
+
+
+  constructor(private dataShareService: DatashareService, private router: Router, private fb: FormBuilder) { }
 
 
 
   ngOnInit() {
-    // Subscribe to the user$ observable to get the initial user data.
-    this.dataShareService.user$.subscribe((res) => {
+    console.log(this.user);
+    this.dataShareService.getUser().subscribe((res) => {
       this.user = res;
     })
+    this.xpForm = new FormGroup({
+      experiences: new FormArray([ // this is an array
+        new FormGroup({ // this is an object 
+          position: new FormControl("", [Validators.required, Validators.minLength(2)]),
+          employer: new FormControl("", [Validators.required, Validators.minLength(2)]),
+          start_date: new FormControl("", [Validators.required]),
+          due_date: new FormControl("", [Validators.required]),
+          description: new FormControl("", [Validators.required]),
+        })
+      ])
+    })
+  }
+  get experiences() {
+    return this.xpForm.get('experiences') as FormArray // get experiences from xpForm but in array state otherwise it has an error in ngFor loop when I want to get experiences.controls
+  }
+
+  navigateToProfile() {
+    this.router.navigate(['/profile'])
+  }
+  onSubmit() {
+    this.router.navigate(['/education'])
   }
 
   addExperience() {
-    const newExperience: Experience = {
-      position: '',
-      employer: '',
-      start_date: '',
-      due_date: '',
-      description: ''
-    };
-    this.user?.experiences?.push(newExperience);
+    this.experiences.push(
+      new FormGroup({
+        position: new FormControl("", [Validators.required, Validators.minLength(2)]),
+        employer: new FormControl("", [Validators.required, Validators.minLength(2)]),
+        start_date: new FormControl("", [Validators.required]),
+        due_date: new FormControl("", [Validators.required]),
+        description: new FormControl("", [Validators.required]),
+      })
+    )
   }
 
-  navigateToExperience() {
-    this.router.navigate(['/experience'])
-    this.addExperience();
-  }
-  navigateToEducation() {
-    this.router.navigate(['/education'])
-  }
+
 }

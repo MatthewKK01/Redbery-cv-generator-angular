@@ -1,5 +1,9 @@
 <section class="d-flex h-100 col-6">
-  <div class="px-m position-relative bg-form">
+  <form
+    [formGroup]="xpForm"
+    (ngSubmit)="onSubmit()"
+    class="px-m position-relative bg-form"
+  >
     <div class="border-bottom border-dark" style="margin-bottom: 70px">
       <div class="d-flex align-items-center justify-content-between">
         <img class="back-arrow" src="assets/images/arrow.svg" alt="" />
@@ -7,51 +11,81 @@
         <p class="text-size-20 m-0">2/3</p>
       </div>
     </div>
+    <!-- Experience inputs -->
 
-    <div
-      class="d-flex flex-column"
-      style="margin-top: 17px; margin-bottom: 13px"
-    >
-      <label for="position">Position</label>
-      <input type="text" id="position" />
-      <small>Min 2 symbols</small>
-    </div>
-    <div class="d-flex flex-column" style="margin-block: 21px">
-      <label for="employer">Employer</label>
-      <input type="text" id="employer" />
-      <small>Min 2 symbols</small>
-    </div>
-    <div class="d-flex" style="gap: 56px; margin-bottom: 22px">
-      <div class="d-flex flex-column">
-        <label for="start_date">Start Date</label>
-        <input style="width: 371px" type="date" id="start_date" />
+    <div formArrayName="experiences">
+      <div *ngFor="let xp of experiences.controls; let i = index">
+        <div [formGroupName]="i">
+          <div
+            class="d-flex flex-column"
+            style="margin-top: 17px; margin-bottom: 13px"
+          >
+            <label for="position">Position</label>
+            <input formControlName="position" type="text" id="position" />
+            <small>Min 2 symbols</small>
+          </div>
+          <div class="d-flex flex-column" style="margin-block: 21px">
+            <label for="employer">Employer</label>
+            <input formControlName="employer" type="text" id="employer" />
+            <small>Min 2 symbols</small>
+          </div>
+          <div class="d-flex" style="gap: 56px; margin-bottom: 22px">
+            <div class="d-flex flex-column">
+              <label for="start_date">Start Date</label>
+              <input
+                formControlName="start_date"
+                style="width: 371px"
+                type="date"
+                id="start_date"
+              />
+            </div>
+            <div class="d-flex flex-column">
+              <label for="due_date">Due Date</label>
+              <input
+                formControlName="due_date"
+                style="width: 370px"
+                type="date"
+                id="due_date"
+              />
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <label for="description">Description</label>
+            <textarea
+              name="description"
+              formControlName="description"
+              cols="30"
+              (resize)="(false)"
+              rows="4"
+            ></textarea>
+          </div>
+        </div>
+        <hr style="margin-block: 51px 45px" />
       </div>
-      <div class="d-flex flex-column">
-        <label for="due_date">Due Date</label>
-        <input style="width: 370px" type="date" id="due_date" />
-      </div>
+      <button
+        type="button"
+        style="width: 289px"
+        (click)="addExperience()"
+        class="btn btn-primary"
+      >
+        Add more experience
+      </button>
     </div>
-    <div class="d-flex flex-column">
-      <label for="description">Description</label>
-      <textarea
-        name="description"
-        id="description"
-        cols="30"
-        (resize)="(false)"
-        rows="4"
-      ></textarea>
-    </div>
+
+    <!-- Navigation Buttons-->
     <button
-      (click)="navigateToExperience()"
+      (click)="navigateToProfile()"
       class="btn btn-success navigate-experience"
     >
-      Experience
+      Profile
     </button>
+
     <button
-      (click)="navigateToEducation()"
+      [disabled]="!xpForm.valid"
+      type="submit"
       class="btn btn-success navigate-education"
     >
       Education
     </button>
-  </div>
+  </form>
 </section>

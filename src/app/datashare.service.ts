@@ -24,7 +24,7 @@ export class DatashareService {
     });
     this.user$ = this.userSubject.asObservable();
   }
-  isHomePage = true;
+
 
   getUser(): Observable<UserProfile> {
     return this.user$;

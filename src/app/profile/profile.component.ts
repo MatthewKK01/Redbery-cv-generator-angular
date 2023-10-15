@@ -29,14 +29,10 @@ export class ProfileComponent implements OnInit {
       Validators.pattern(/^(\+995|0)[5-9][0-9]{8}$/)])
     })
     // Subscribe to the user$ observable to get the initial user data.
-    this.dataShareService.user$.subscribe((res) => {
-      this.user = res;
-    })
-    if (this.profileForm.valid) {
-      console.log("valid");
-    } else {
-      console.log(this.profileForm.errors)
-    }
+    this.dataShareService.getUser().subscribe(user => {
+      this.user = user;
+    });
+
   }
 
   onImageSelected(event: any): void {
@@ -55,5 +51,6 @@ export class ProfileComponent implements OnInit {
     this.user = this.profileForm.value;
     this.dataShareService.updateUser(this.user); // Pass the updated user profile to the service
     this.router.navigate(['/experience'])
+
   }
 }

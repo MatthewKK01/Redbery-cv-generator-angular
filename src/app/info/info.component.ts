@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatashareService } from '../datashare.service';
 
 import { UserProfile } from '../models';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-info',
@@ -9,25 +10,7 @@ import { UserProfile } from '../models';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit {
-  userdata: UserProfile =
-    {
-      name: '',
-      surname: '',
-      email: '',
-      phone_number: '',
-      experiences: [],
-      educations: [
-        {
-          institute: "",
-          degree_id: null,
-          due_date: "",
-          description: "",
-        }
-      ],
-      image: '',
-      about_me: '',
-    }
-    ;
+  userdata!: UserProfile
 
   constructor(private data: DatashareService) { }
 
@@ -36,4 +19,7 @@ export class InfoComponent implements OnInit {
     console.log(this.userdata);
   }
 
+  check() {
+    console.log(this.userdata)
+  }
 }

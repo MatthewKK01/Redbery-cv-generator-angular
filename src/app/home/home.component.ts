@@ -14,7 +14,7 @@ export class HomeComponent {
 
   naviagteToHomePage() {
     this.updateIsHomePage.emit(false);
-    console.log("clicked");
+
     this.router.navigate(['/profile']);
   }
 }

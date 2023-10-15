@@ -11,6 +11,6 @@ export class BackComponent {
   constructor(private router: Router, private dataShare: DatashareService) { }
   goBack() {
     this.router.navigate(['/'])
-    this.dataShare.isHomePage = false;
+
   }
 }
