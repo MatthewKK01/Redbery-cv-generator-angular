@@ -14,7 +14,9 @@
     <!-- Experience inputs -->
 
     <div formArrayName="experiences">
+      <!-- Experience loop  (button should be outside) -->
       <div *ngFor="let xp of experiences.controls; let i = index">
+        <!-- Experience formgroup assings -->
         <div [formGroupName]="i">
           <div
             class="d-flex flex-column"

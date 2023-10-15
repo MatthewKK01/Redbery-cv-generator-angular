@@ -45,6 +45,8 @@ export class ExperienceComponent implements OnInit {
   }
   onSubmit() {
     this.router.navigate(['/education'])
+    // now i have to add this experiences to userSubject.
+
   }
 
   addExperience() {
