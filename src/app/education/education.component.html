@@ -1,1 +1,88 @@
-<p>education works!</p>
+<section class="d-flex h-100 col-6">
+  <form
+    [formGroup]="EducationForm"
+    (ngSubmit)="onSubmit()"
+    class="px-m position-relative bg-form"
+  >
+    <div class="border-bottom border-dark" style="margin-bottom: 70px">
+      <div class="d-flex align-items-center justify-content-between">
+        <img class="back-arrow" src="assets/images/arrow.svg" alt="" />
+        <h1>Education</h1>
+        <p class="text-size-20 m-0">3/3</p>
+      </div>
+    </div>
+    <!-- Education inputs -->
+    <div formArrayName="educations">
+      <!-- Education loop  (button should be outside) -->
+      <div *ngFor="let education of Educations.controls; let i = index">
+        <!-- Education formgroup assings -->
+        <div [formGroupName]="i">
+          <div
+            class="d-flex flex-column"
+            style="margin-top: 17px; margin-bottom: 13px"
+          >
+            <label for="institute">Institute</label>
+            <input formControlName="institute" type="text" id="institute" />
+            <small>Min 2 symbols</small>
+          </div>
+          <div
+            class="d-flex align-items-center"
+            style="gap: 56px; margin-bottom: 26px"
+          >
+            <div class="d-flex flex-column" style="margin-block: 21px">
+              <label for="degree_id">Degree</label>
+
+              <select
+                class="form-select"
+                id="degree_id"
+                formControlName="degree_id"
+              >
+                <option value="" disabled selected>Choose Degree</option>
+                <option value="master">Master's Degree</option>
+                <option value="doctor">Doctorate (Ph.D.)</option>
+                <option value="bachelor">Bachelor's Degree</option>
+                <option value="associate">Associate's Degree</option>
+                <option value="diploma">Diploma</option>
+                <option value="certificate">Certificate</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+            <div class="d-flex flex-column">
+              <label for="due_date">Due Date</label>
+              <input
+                formControlName="due_date"
+                style="width: 370px"
+                type="date"
+                id="due_date"
+              />
+            </div>
+          </div>
+
+          <div class="d-flex flex-column">
+            <label for="description">Description</label>
+            <textarea
+              name="description"
+              formControlName="description"
+              cols="30"
+              (resize)="(false)"
+              rows="4"
+            ></textarea>
+          </div>
+        </div>
+        <hr style="margin-block: 51px 45px" />
+      </div>
+      <button
+        type="button"
+        style="width: 289px"
+        (click)="addEducation()"
+        class="btn btn-primary"
+      >
+        Add more education
+      </button>
+    </div>
+    <!-- Navigation Buttons-->
+    <button class="btn btn-success navigate-experience">Experience</button>
+
+    <button type="submit" class="btn btn-success finish">Finish</button>
+  </form>
+</section>

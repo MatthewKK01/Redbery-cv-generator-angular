@@ -1,0 +1,20 @@
+:host{
+    display: block;
+    flex: 0 0 auto;
+    min-height: 100vh;
+
+}
+
+.form-select{
+    border: 1px solid #BCBCBC;
+    height: 48px;
+    border-radius: 0;
+    width: 370px;
+}
+.finish{
+    position: absolute; bottom: 65px; right: 150px
+}
+
+.navigate-experience{
+    position: absolute; bottom: 65px; left: 150px
+}
