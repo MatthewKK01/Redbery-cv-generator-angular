@@ -10,6 +10,7 @@ export class DatashareService {
 
   private userSubject: BehaviorSubject<UserProfile>;
   public user$: Observable<UserProfile>;
+  public isHomePage: boolean = false; // must be true
 
   constructor() {
     this.userSubject = new BehaviorSubject<UserProfile>({

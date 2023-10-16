@@ -18,3 +18,10 @@
 .navigate-experience{
     position: absolute; bottom: 65px; left: 150px
 }
+select.ng-invalid.ng-touched{
+    border:1px solid #EF5050;
+}
+select.ng-dirty.ng-valid{
+    border:1px solid #98E37E;
+
+}

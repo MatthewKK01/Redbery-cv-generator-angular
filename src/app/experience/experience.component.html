@@ -19,14 +19,41 @@
         <!-- Experience formgroup assings -->
         <div [formGroupName]="i">
           <div
-            class="d-flex flex-column"
+            class="d-flex position-relative flex-column"
             style="margin-top: 17px; margin-bottom: 13px"
           >
+            <img
+              *ngIf="xp.get('position').valid"
+              src="/assets/images/success.svg"
+              class="position-absolute indicator"
+              alt=""
+            />
+            <img
+              *ngIf="xp.get('position').touched && !xp.get('position').valid"
+              src="/assets/images/warning.svg"
+              class="position-absolute indicator"
+              alt=""
+            />
             <label for="position">Position</label>
             <input formControlName="position" type="text" id="position" />
             <small>Min 2 symbols</small>
           </div>
-          <div class="d-flex flex-column" style="margin-block: 21px">
+          <div
+            class="d-flex position-relative flex-column"
+            style="margin-block: 21px"
+          >
+            <img
+              *ngIf="xp.get('employer').valid"
+              src="/assets/images/success.svg"
+              class="position-absolute indicator"
+              alt=""
+            />
+            <img
+              *ngIf="xp.get('employer').touched && !xp.get('employer').valid"
+              src="/assets/images/warning.svg"
+              class="position-absolute indicator"
+              alt=""
+            />
             <label for="employer">Employer</label>
             <input formControlName="employer" type="text" id="employer" />
             <small>Min 2 symbols</small>

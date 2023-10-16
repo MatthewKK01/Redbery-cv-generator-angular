@@ -20,14 +20,14 @@ export class ExperienceComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.user);
+
     this.dataShareService.getUser().subscribe((res) => {
       this.user = res;
     })
     this.xpForm = new FormGroup({
       experiences: new FormArray([ // this is an array
         new FormGroup({ // this is an object 
-          position: new FormControl("", [Validators.required, Validators.minLength(2)]),
+          position: new FormControl(localStorage.getItem('experiences.position') || "", [Validators.required, Validators.minLength(2)]),
           employer: new FormControl("", [Validators.required, Validators.minLength(2)]),
           start_date: new FormControl("", [Validators.required]),
           due_date: new FormControl("", [Validators.required]),
@@ -35,6 +35,7 @@ export class ExperienceComponent implements OnInit {
         })
       ])
     })
+    console.log(this.experiences.controls[0].get('position'));
   }
   get experiences() {
     return this.xpForm.get('experiences') as FormArray // get experiences from xpForm but in array state otherwise it has an error in ngFor loop when I want to get experiences.controls
@@ -44,6 +45,7 @@ export class ExperienceComponent implements OnInit {
     this.router.navigate(['/profile'])
   }
   onSubmit() {
+    this.updateLocalStorage();
 
     // now i have to add this experiences to userSubject.
     const updatedUser: UserProfile = {
@@ -54,15 +56,19 @@ export class ExperienceComponent implements OnInit {
     this.router.navigate(['/education'])
 
   }
+  updateLocalStorage() {
+
+    localStorage.setItem("experiences", JSON.stringify(this.xpForm.value.experiences))
+  }
 
   addExperience() {
     this.experiences.push(
       new FormGroup({
-        position: new FormControl("", [Validators.required, Validators.minLength(2)]),
-        employer: new FormControl("", [Validators.required, Validators.minLength(2)]),
-        start_date: new FormControl("", [Validators.required]),
-        due_date: new FormControl("", [Validators.required]),
-        description: new FormControl("", [Validators.required]),
+        position: new FormControl(localStorage.getItem('position') || "", [Validators.required, Validators.minLength(2)]),
+        employer: new FormControl(localStorage.getItem('employer') || "", [Validators.required, Validators.minLength(2)]),
+        start_date: new FormControl(localStorage.getItem('start_date') || "", [Validators.required]),
+        due_date: new FormControl(localStorage.getItem('due_date') || "", [Validators.required]),
+        description: new FormControl(localStorage.getItem('description') || "", [Validators.required]),
       })
     )
   }

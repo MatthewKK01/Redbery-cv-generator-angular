@@ -12,30 +12,46 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
-  user!: UserProfile;
-  profileForm!: FormGroup;
+  user: UserProfile;
+  profileForm: FormGroup;
+  nameValid: boolean;
 
-  constructor(private dataShareService: DatashareService, private router: Router) { }
+  constructor(private dataShareService: DatashareService, private router: Router) {
+
+
+
+
+  }
 
 
   ngOnInit() {
+
     this.profileForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      surname: new FormControl('', [Validators.required, Validators.minLength(2)]),
-      about_me: new FormControl(''),
-      image: new FormControl(''),
-      email: new FormControl('', [Validators.required, Validators.email,
+      name: new FormControl(localStorage.getItem('name') || '', [Validators.required,
+      Validators.pattern(/^[A-Za-z]+$/), Validators.minLength(2)]),
+      surname: new FormControl(localStorage.getItem('surname') || '', [Validators.required,
+      Validators.pattern(/^[A-Za-z]+$/), Validators.minLength(2)]),
+      about_me: new FormControl(localStorage.getItem('about_me') || ''),
+      image: new FormControl(localStorage.getItem('image') || ''),
+      email: new FormControl(localStorage.getItem('email') || '', [Validators.required, Validators.email,
       Validators.pattern(/^[A-Za-z0-9._%+-]+@redberry\.ge$/)]),
-      phone_number: new FormControl(null, [Validators.required,
+      phone_number: new FormControl(localStorage.getItem('phone_number') || null, [Validators.required,
       Validators.pattern(/^(\+995|0)[5-9][0-9]{8}$/)])
     })
     // Subscribe to the user$ observable to get the initial user data.
+
     this.dataShareService.getUser().subscribe(user => {
       this.user = user;
     });
 
     this.profileForm.get('image').setValue(this.user.image);
 
+  }
+
+  updateLocalStorage() {
+    for (const controlName of Object.keys(this.profileForm.controls)) {
+      localStorage.setItem(controlName, this.profileForm.get(controlName).value);
+    }
   }
 
   onImageSelected(event: any): void {
@@ -51,7 +67,12 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+
+
+
+
   onSubmit() {
+    this.updateLocalStorage()
     const updatedUser: UserProfile = {
       ...this.user, // Copy the existing user data
       ...this.profileForm.value, // Update with the new form values

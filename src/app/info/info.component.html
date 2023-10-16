@@ -1,5 +1,4 @@
 <section>
-  <button (click)="check()">check</button>
   <div class="d-flex">
     <article class="col-lg">
       <div class="d-flex" style="gap: 20px">
@@ -75,11 +74,12 @@
       style="width: 246px; height: 246px; border-radius: 50%; object-fit: cover"
     />
   </div>
-  <hr />
+  <hr *ngIf="userdata.experiences.length > 0" />
   <div>
     <ng-container>
+      <h2 *ngIf="userdata.experiences.length > 0">Experience</h2>
+
       <div *ngFor="let experience of userdata.experiences">
-        <h2>Experience</h2>
         <div>
           <span class="employer">{{ experience.position }}</span
           >, <span class="employer">{{ experience.employer }}</span>
@@ -90,6 +90,24 @@
         </div>
         <p class="description" style="margin-top: 16px">
           {{ experience.description }}
+        </p>
+      </div>
+    </ng-container>
+  </div>
+  <hr *ngIf="userdata.educations.length > 0" />
+  <div>
+    <ng-container>
+      <h2 *ngIf="userdata.educations.length > 0">Education</h2>
+      <div *ngFor="let education of userdata.educations">
+        <div>
+          <span class="employer">{{ education.institute }}</span
+          >, <span class="employer">{{ education.degree_id }}</span>
+        </div>
+        <div>
+          <span class="date"> {{ education.due_date }} </span>
+        </div>
+        <p class="description" style="margin-top: 16px">
+          {{ education.description }}
         </p>
       </div>
     </ng-container>

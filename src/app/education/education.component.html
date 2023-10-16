@@ -18,9 +18,24 @@
         <!-- Education formgroup assings -->
         <div [formGroupName]="i">
           <div
-            class="d-flex flex-column"
+            class="d-flex position-relative flex-column"
             style="margin-top: 17px; margin-bottom: 13px"
           >
+            <img
+              *ngIf="education.get('institute').valid"
+              src="/assets/images/success.svg"
+              class="position-absolute indicator"
+              alt=""
+            />
+            <img
+              *ngIf="
+                education.get('institute').touched &&
+                !education.get('institute').valid
+              "
+              src="/assets/images/warning.svg"
+              class="position-absolute indicator"
+              alt=""
+            />
             <label for="institute">Institute</label>
             <input formControlName="institute" type="text" id="institute" />
             <small>Min 2 symbols</small>
@@ -81,7 +96,12 @@
       </button>
     </div>
     <!-- Navigation Buttons-->
-    <button class="btn btn-success navigate-experience">Experience</button>
+    <button
+      (click)="navigateToExperience()"
+      class="btn btn-success navigate-experience"
+    >
+      Experience
+    </button>
 
     <button type="submit" class="btn btn-success finish">Finish</button>
   </form>

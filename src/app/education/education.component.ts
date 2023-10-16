@@ -20,10 +20,10 @@ export class EducationComponent implements OnInit {
     this.EducationForm = new FormGroup({
       educations: new FormArray([
         new FormGroup({
-          institute: new FormControl('', [Validators.required, Validators.minLength(2)]),
-          degree_id: new FormControl('Choose Degree'),
-          due_date: new FormControl(''),
-          description: new FormControl('')
+          institute: new FormControl(localStorage.getItem('institute') || "", [Validators.required, Validators.minLength(2)]),
+          degree_id: new FormControl(localStorage.getItem('degree_id') || ""),
+          due_date: new FormControl(localStorage.getItem('due_date') || ""),
+          description: new FormControl(localStorage.getItem('description') || "")
         })
       ])
     })
@@ -31,15 +31,21 @@ export class EducationComponent implements OnInit {
       this.user = res;
     })
   }
+  navigateToExperience() {
+    this.router.navigate(['/experience'])
+  }
+
+  updateLocalStorage() {
+    for (const controlName of Object.keys(this.EducationForm.controls)) {
+      localStorage.setItem(controlName, this.EducationForm.get(controlName).value);
+    }
+  }
   onSubmit() {
+    this.updateLocalStorage()
+    this.passData()
 
     // Create a new UserProfile object with the updated educations array
-    const updatedUser: UserProfile = {
-      ...this.user, // Copy the existing user data
-      educations: this.Educations.value, // Update educations array
-    };
-
-    this.dataShareService.updateUser(updatedUser); // Update the user data in the service
+    // Update the user data in the service
     this.router.navigate(['/final-page']);
   }
   addEducation() {
@@ -51,9 +57,18 @@ export class EducationComponent implements OnInit {
         description: new FormControl('', Validators.required)
       })
     )
+    this.passData()
   }
   get Educations() {
     return this.EducationForm.get('educations') as FormArray;
   }
 
+  passData() {
+    const updatedUser: UserProfile = {
+      ...this.user, // Copy the existing user data
+      educations: this.Educations.value, // Update educations array
+    };
+
+    this.dataShareService.updateUser(updatedUser);
+  }
 }

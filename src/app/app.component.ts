@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatashareService } from './datashare.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'redberry-cv-generator';
-  isHomePage = false; // this must be true;
+  isHomePage: boolean; // this must be true;
 
+  constructor(private dataShareService: DatashareService) { }
   ngOnInit() {
-
+    this.isHomePage = this.dataShareService.isHomePage
   }
+
   updateIsHomePage(value: boolean) {
 
     this.isHomePage = value;
