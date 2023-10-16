@@ -14,12 +14,12 @@ export class HomeComponent implements OnInit {
   @Output() updateIsHomePage = new EventEmitter<boolean>();
 
   ngOnInit() {
-    this.isHomePage = this.service.isHomePage;
+
   }
 
   naviagteToHomePage() {
     this.updateIsHomePage.emit(false);
-    this.service.isHomePage = false
+    this.service.setIsHomepage(false)
 
     this.router.navigate(['/profile']);
   }

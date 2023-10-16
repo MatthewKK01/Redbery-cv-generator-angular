@@ -10,7 +10,7 @@ import { DatashareService } from '../datashare.service';
 export class BackComponent {
   constructor(private router: Router, private dataShare: DatashareService) { }
   goBack() {
-    this.dataShare.isHomePage = true;
+    this.dataShare.setIsHomepage(true);
     localStorage.clear()
     this.router.navigate(['/']);
   }

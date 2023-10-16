@@ -12,7 +12,9 @@ export class AppComponent {
 
   constructor(private dataShareService: DatashareService) { }
   ngOnInit() {
-    this.isHomePage = this.dataShareService.isHomePage
+    this.dataShareService.isHomepage$.subscribe((value: boolean) => {
+      this.isHomePage = value;
+    });
   }
 
   updateIsHomePage(value: boolean) {
