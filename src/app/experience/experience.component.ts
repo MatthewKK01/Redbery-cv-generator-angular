@@ -44,8 +44,14 @@ export class ExperienceComponent implements OnInit {
     this.router.navigate(['/profile'])
   }
   onSubmit() {
-    this.router.navigate(['/education'])
+
     // now i have to add this experiences to userSubject.
+    const updatedUser: UserProfile = {
+      ...this.user,
+      experiences: this.xpForm.value.experiences
+    }
+    this.dataShareService.updateUser(updatedUser); // Update the user data in the service
+    this.router.navigate(['/education'])
 
   }
 

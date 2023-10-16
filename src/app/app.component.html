@@ -4,7 +4,7 @@
   (updateIsHomePage)="updateIsHomePage($event)"
 ></app-home>
 
-<div *ngIf="!isHomePage" class="d-flex">
+<div *ngIf="!isHomePage" class="d-flex bg-danger">
   <router-outlet></router-outlet>
   <app-info></app-info>
 </div>

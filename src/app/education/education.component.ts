@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserProfile } from '../models';
+import { DatashareService } from '../datashare.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-education',
@@ -9,6 +12,8 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 export class EducationComponent implements OnInit {
 
   EducationForm: FormGroup;
+  user: UserProfile;
+  constructor(private dataShareService: DatashareService, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -22,9 +27,20 @@ export class EducationComponent implements OnInit {
         })
       ])
     })
+    this.dataShareService.getUser().subscribe((res) => {
+      this.user = res;
+    })
   }
   onSubmit() {
-    console.log(`submitted`);
+
+    // Create a new UserProfile object with the updated educations array
+    const updatedUser: UserProfile = {
+      ...this.user, // Copy the existing user data
+      educations: this.Educations.value, // Update educations array
+    };
+
+    this.dataShareService.updateUser(updatedUser); // Update the user data in the service
+    this.router.navigate(['/final-page']);
   }
   addEducation() {
     this.Educations.push(
