@@ -62,6 +62,7 @@ export class ProfileComponent implements OnInit {
       reader.onload = () => {
         // Assign the base64 data to the 'image' FormControl
         this.profileForm.get('image').setValue(reader.result as string);
+        localStorage.setItem('image', reader.result as string)
       };
       reader.readAsDataURL(file); // Read the file as a data URL
     }

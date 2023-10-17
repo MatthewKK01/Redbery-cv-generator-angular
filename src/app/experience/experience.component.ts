@@ -10,20 +10,24 @@ import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, Validators
 })
 export class ExperienceComponent implements OnInit {
   user: UserProfile;
-
+  localXp = JSON.parse(localStorage.getItem('experiences'));
   xpForm!: FormGroup;
 
 
 
   constructor(private dataShareService: DatashareService, private router: Router, private fb: FormBuilder) { }
 
-
+  generateFormArray() {
+    if (this.localXp) {
+      this.xpForm.setValue({ experiences: this.localXp });
+    }
+  }
 
   ngOnInit() {
-
     this.dataShareService.getUser().subscribe((res) => {
       this.user = res;
     })
+
     this.xpForm = new FormGroup({
       experiences: new FormArray([ // this is an array
         new FormGroup({ // this is an object 
@@ -35,8 +39,11 @@ export class ExperienceComponent implements OnInit {
         })
       ])
     })
-    console.log(this.experiences.controls[0].get('position'));
+    console.log(this.experiences);
+    this.generateFormArray()
+
   }
+
   get experiences() {
     return this.xpForm.get('experiences') as FormArray // get experiences from xpForm but in array state otherwise it has an error in ngFor loop when I want to get experiences.controls
   }
@@ -57,18 +64,17 @@ export class ExperienceComponent implements OnInit {
 
   }
   updateLocalStorage() {
-
     localStorage.setItem("experiences", JSON.stringify(this.xpForm.value.experiences))
   }
 
   addExperience() {
     this.experiences.push(
       new FormGroup({
-        position: new FormControl(localStorage.getItem('position') || "", [Validators.required, Validators.minLength(2)]),
-        employer: new FormControl(localStorage.getItem('employer') || "", [Validators.required, Validators.minLength(2)]),
-        start_date: new FormControl(localStorage.getItem('start_date') || "", [Validators.required]),
-        due_date: new FormControl(localStorage.getItem('due_date') || "", [Validators.required]),
-        description: new FormControl(localStorage.getItem('description') || "", [Validators.required]),
+        position: new FormControl("", [Validators.required, Validators.minLength(2)]),
+        employer: new FormControl("", [Validators.required, Validators.minLength(2)]),
+        start_date: new FormControl("", [Validators.required]),
+        due_date: new FormControl("", [Validators.required]),
+        description: new FormControl("", [Validators.required]),
       })
     )
   }

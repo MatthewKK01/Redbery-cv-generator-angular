@@ -11,6 +11,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BackComponent } from './back/back.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,14 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     FormsModule,
     ReactiveFormsModule,
     NgxMaskDirective,
-    NgxMaskPipe
+    NgxMaskPipe,
+    ToastrModule.forRoot(
+      {
+        progressBar: true,
+        timeOut: 3000
+      }
+    ),
+    BrowserAnimationsModule
   ],
   providers: [
     provideNgxMask()

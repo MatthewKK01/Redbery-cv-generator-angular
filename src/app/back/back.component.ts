@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatashareService } from '../datashare.service';
+import { UserProfile } from '../models';
 
 @Component({
   selector: 'app-back',

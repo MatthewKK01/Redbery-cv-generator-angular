@@ -16,7 +16,6 @@ export class InfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.data.getUser().subscribe(res => this.userdata = res);
-
   }
 
   check() {

@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserProfile } from '../models';
 import { DatashareService } from '../datashare.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-education',
@@ -13,9 +14,18 @@ export class EducationComponent implements OnInit {
 
   EducationForm: FormGroup;
   user: UserProfile;
-  constructor(private dataShareService: DatashareService, private router: Router) { }
+  localXp = JSON.parse(localStorage.getItem('educations'));
 
+  constructor(private dataShareService: DatashareService, private router: Router, private toastr: ToastrService) { }
 
+  generateFormArray() {
+    if (this.localXp) {
+      this.EducationForm.setValue({ educations: this.localXp });
+    }
+  }
+  showToast() {
+    this.toastr.success("Resume successfully sent")
+  }
   ngOnInit(): void {
     this.EducationForm = new FormGroup({
       educations: new FormArray([
@@ -30,15 +40,14 @@ export class EducationComponent implements OnInit {
     this.dataShareService.getUser().subscribe((res) => {
       this.user = res;
     })
+    this.generateFormArray()
   }
   navigateToExperience() {
     this.router.navigate(['/experience'])
   }
 
   updateLocalStorage() {
-    for (const controlName of Object.keys(this.EducationForm.controls)) {
-      localStorage.setItem(controlName, this.EducationForm.get(controlName).value);
-    }
+    localStorage.setItem("educations", JSON.stringify(this.EducationForm.value.educations))
   }
   onSubmit() {
     this.updateLocalStorage()
@@ -46,7 +55,7 @@ export class EducationComponent implements OnInit {
 
     // Create a new UserProfile object with the updated educations array
     // Update the user data in the service
-    this.router.navigate(['/final-page']);
+    this.showToast()
   }
   addEducation() {
     this.Educations.push(

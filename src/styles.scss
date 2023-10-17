@@ -1,5 +1,6 @@
 @import 'material-icons/iconfont/material-icons.css';
 @import '/node_modules/bootstrap/scss/bootstrap.scss';
+@import 'ngx-toastr/toastr-bs5-alert';
 :host{
     min-height: 100vh;
 }
@@ -52,6 +53,7 @@ text-align: left;
     padding-inline: 150px;
 
 }
+
 .bg-danger{
 background-color: #F9F9F9 !important;
 }

@@ -79,18 +79,20 @@
     <ng-container>
       <h2 *ngIf="userdata.experiences.length > 0">Experience</h2>
 
-      <div *ngFor="let experience of userdata.experiences">
-        <div>
-          <span class="employer">{{ experience.position }}</span
-          >, <span class="employer">{{ experience.employer }}</span>
+      <div class="d-flex flex-column" style="gap: 22px">
+        <div *ngFor="let experience of userdata.experiences">
+          <div>
+            <span class="employer">{{ experience.position }}</span
+            >, <span class="employer">{{ experience.employer }}</span>
+          </div>
+          <div>
+            <span class="date"> {{ experience.start_date }} </span> -
+            <span class="date"> {{ experience.due_date }} </span>
+          </div>
+          <p class="description" style="margin-top: 16px">
+            {{ experience.description }}
+          </p>
         </div>
-        <div>
-          <span class="date"> {{ experience.start_date }} </span> -
-          <span class="date"> {{ experience.due_date }} </span>
-        </div>
-        <p class="description" style="margin-top: 16px">
-          {{ experience.description }}
-        </p>
       </div>
     </ng-container>
   </div>
