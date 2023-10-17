@@ -26,6 +26,22 @@ line-height: 21px;
 letter-spacing: 0em;
 text-align: left;
 }
+.btn:disabled{
+    @extend .btn-success;
+    opacity: 0.5;
+}
+.spinner{
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .btn-success{
     background-color: #6B40E3;
     width: 151px;
@@ -122,3 +138,5 @@ textarea.ng-invalid.ng-touched{
 textarea.ng-dirty.ng-valid{
     border:1px solid #98E37E;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

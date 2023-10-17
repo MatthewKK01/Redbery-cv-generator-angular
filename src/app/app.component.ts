@@ -9,12 +9,22 @@ import { DatashareService } from './datashare.service';
 export class AppComponent {
   title = 'redberry-cv-generator';
   isHomePage: boolean; // this must be true;
+  spinner: boolean = false;
 
   constructor(private dataShareService: DatashareService) { }
   ngOnInit() {
+    this.loadData()
+
     this.dataShareService.isHomepage$.subscribe((value: boolean) => {
       this.isHomePage = value;
     });
+  }
+
+  loadData() {
+    this.spinner = true;
+    setTimeout(() => {
+      this.spinner = false;
+    }, 3000);
   }
 
   updateIsHomePage(value: boolean) {
