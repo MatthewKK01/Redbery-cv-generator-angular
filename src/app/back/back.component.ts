@@ -11,6 +11,7 @@ import { UserProfile } from '../models';
 export class BackComponent {
   constructor(private router: Router, private dataShare: DatashareService) { }
   goBack() {
+    this.dataShare.resetUser()
     this.dataShare.setIsHomepage(true);
     localStorage.clear()
     this.router.navigate(['/']);

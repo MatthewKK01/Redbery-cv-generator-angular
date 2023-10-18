@@ -13,18 +13,24 @@ export class DatashareService {
   private isHomepageSubject = new BehaviorSubject<boolean>(true);
 
   isHomepage$ = this.isHomepageSubject.asObservable();
+  userDataFromLocalStorage = localStorage.getItem('userData');
 
   constructor() {
-    this.userSubject = new BehaviorSubject<UserProfile>({
-      name: '',
-      surname: '',
-      email: '',
-      phone_number: '',
-      experiences: [],
-      educations: [],
-      image: '',
-      about_me: '',
-    });
+    this.userSubject = new BehaviorSubject<UserProfile>(
+      this.userDataFromLocalStorage
+        ? JSON.parse(this.userDataFromLocalStorage)
+        : {
+          name: '',
+          surname: '',
+          email: '',
+          phone_number: '',
+          experiences: [],
+          educations: [],
+          image: '',
+          about_me: '',
+        }
+    );
+
     this.user$ = this.userSubject.asObservable();
   }
 
@@ -38,6 +44,20 @@ export class DatashareService {
   updateUser(updatedUser: UserProfile): void {
     // Update the user data in the BehaviorSubject.
     this.userSubject.next(updatedUser);
+    localStorage.setItem('userData', JSON.stringify(updatedUser));
+  }
+  resetUser(): void {
+    // Reset the user data to an empty state.
+    this.userSubject.next({
+      name: '',
+      surname: '',
+      email: '',
+      phone_number: '',
+      experiences: [],
+      educations: [],
+      image: '',
+      about_me: '',
+    });
   }
 
 }

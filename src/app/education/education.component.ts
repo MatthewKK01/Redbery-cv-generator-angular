@@ -80,4 +80,7 @@ export class EducationComponent implements OnInit {
 
     this.dataShareService.updateUser(updatedUser);
   }
+  actionMethod(event: any) {
+    event.target.disabled = true;
+}
 }

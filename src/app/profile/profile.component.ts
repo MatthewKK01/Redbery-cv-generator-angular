@@ -45,7 +45,6 @@ export class ProfileComponent implements OnInit {
     });
 
     this.profileForm.get('image').setValue(this.user.image);
-
   }
 
   updateLocalStorage() {
